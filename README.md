@@ -1,2 +1,2 @@
 # feira_tec26
-Repositóri para feira tecnológica de 2026
+Repositório para feira tecnológica de 2026
