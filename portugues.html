@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Português Fácil — Central de Estudos</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        :root {
+            --primary: #45c7cc;
+            --secondary: #46c2bc;
+            --background: #f5f6fa;
+            --card: #ffffff;
+            --text: #222;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --success: #16a34a;
+            --danger: #dc2626;
+        }
+
+        body.dark {
+            --background: #111827;
+            --card: #1f2937;
+            --text: #f9fafb;
+            --muted: #9ca3af;
+            --border: #374151;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            transition: 0.3s;
+        }
+
+       
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(180deg, #259c96, #1d9e98);
+            color: white;
+            padding: 25px 15px;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+        }
+
+        .logo p {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        .menu li {
+            margin: 8px 0;
+        }
+
+        .menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 10px;
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            background: rgba(255,255,255,0.18);
+            transform: translateX(4px);
+        }
+
+      
+
+        .main {
+            margin-left: 250px;
+            padding: 30px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .welcome h2 {
+            font-size: 30px;
+        }
+
+        .welcome p {
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        .theme-btn {
+            border: none;
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+       
+
+        .search-box {
+            margin-bottom: 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            outline: none;
+            background: var(--card);
+            color: var(--text);
+            font-size: 16px;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+
+       
+        .hero {
+            background: linear-gradient(135deg, #1E5B54, #6BE4D6);
+            color: white;
+            padding: 35px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .hero h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .hero button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: white;
+            color: #31a192;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        
+        .section-title {
+            margin: 35px 0 15px;
+            font-size: 24px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 22px;
+            transition: 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .card .icon {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .card button {
+            margin-top: 15px;
+            border: none;
+            background: var(--primary);
+            color: white;
+            padding: 9px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+
+        .progress-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 15px;
+            background: #ddd;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 35%;
+            background: linear-gradient(90deg, #3dc5ba, #43beaa);
+            border-radius: 20px;
+            transition: width 0.5s;
+        }
+
+       
+
+        .study {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .study h3 {
+            color: var(--primary);
+            margin: 20px 0 10px;
+        }
+
+        .study p,
+        .study li {
+            line-height: 1.7;
+        }
+
+        .study ul {
+            margin-left: 25px;
+        }
+
+        .example {
+            background: rgba(108,92,231,0.1);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .tip {
+            background: rgba(22,163,74,0.1);
+            border-left: 4px solid var(--success);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+     
+
+        .quiz {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        .question h3 {
+            margin-bottom: 12px;
+        }
+
+        .option {
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background: rgba(108,92,231,0.1);
+        }
+
+        .quiz button {
+            padding: 12px 20px;
+            border: none;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+       
+        footer {
+            margin-top: 50px;
+            padding: 25px;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+      
+        @media (max-width: 800px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main {
+                margin-left: 200px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 15px;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .hero h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h1>
+                 Português Fácil</h1>
+            <p>Central de estudos</p>
+        </div>
+
+        <ul class="menu">
+            <li><a href="#inicio"> Início</a></li>
+            <li><a href="#materias">Matérias</a></li>
+            <li><a href="#gramatica"> Gramática</a></li>
+            <li><a href="#sintaxe"> Sintaxe</a></li>
+            <li><a href="#ortografia"> Ortografia</a></li>
+            <li><a href="#acentuacao"> Acentuação</a></li>
+            <li><a href="#literatura"> Literatura</a></li>
+            <li><a href="#figuras"> Figuras de linguagem</a></li>
+            <li><a href="#interpretacao"> Interpretação</a></li>
+            <li><a href="#redacao"> Redação</a></li>
+            <li><a href="#quiz"> Quiz</a></li>
+        </ul>
+
+    </aside>
+
+    <main class="main">
+
+        <header id="inicio">
+
+            <div class="welcome">
+                <h2>Olá, estudante! </h2>
+                <p>Aprenda Português de forma simples e organizada.</p>
+            </div>
+
+            <button class="theme-btn" onclick="alternarTema()">
+                 Modo escuro
+            </button>
+
+            <link rel="icon" type="image/png" href="img/flavicon.png">
+            
+
+        </header>
+
+
+        <div class="search-box">
+            <input
+                type="text"
+                id="pesquisa"
+                onkeyup="pesquisar()"
+            >
+        </div>
+
+
+        <section class="hero">
+
+            <h2> Sua central de estudos de Português</h2>
+
+            <p>
+                Estude gramática, literatura, ortografia, interpretação
+                de textos e redação em um único lugar.
+            </p>
+
+            <button onclick="document.getElementById('materias').scrollIntoView()">
+                Começar a estudar
+            </button>
+
+        </section>
+
+
+        <h2 class="section-title" id="materias">
+             Matérias
+        </h2>
+
+        <div class="cards" id="cards">
+
+            <div class="card">
+                <div class="icon"></div>
+                <h3>Gramática</h3>
+                <p>Classes gramaticais, verbos, pronomes e muito mais.</p>
+                <button onclick="mostrar('gramatica')">Estudar</button>
+            </div>
+
+            <div class="card">
+                <div class="icon"></div>
+                <h3>Sintaxe</h3>
+                <p>Aprenda sobre sujeito, predicado e termos da oração.</p>
+                <button onclick="mostrar('sintaxe')">Estudar</button>
+            </div>
+
+            <div class="card">
+                <div class="icon"></div>
+                <h3>Ortografia</h3>
+                <p>Aprenda a escrever corretamente as palavras.</p>
+                <button onclick="mostrar('ortografia')">Estudar</button>
+            </div>
+
+            <div class="card">
+                <div class="icon"></div>
+                <h3>Acentuação</h3>
+                <p>Regras de acentuação e classificação das palavras.</p>
+                <button onclick="mostrar('acentuacao')">Estudar</button>
+            </div>
+
+            <div class="card">
+                <div class="icon"></div>
+                <h3>Literatura</h3>
+                <p>Conheça os principais movimentos literários.</p>
+                <button onclick="mostrar('literatura')">Estudar</button>
+            </div>
+
+            <div class="card">
+                <div class="icon"></div>
+                <h3>Figuras de linguagem</h3>
+                <p>Metáfora, ironia, hipérbole, antítese e outras.</p>
+                <button onclick="mostrar('figuras')">Estudar</button>
+            </div>
+
+            <div class="card">
+                <div class="icon"></div>
+                <h3>Interpretação</h3>
+                <p>Aprenda a compreender e interpretar textos.</p>
+                <button onclick="mostrar('interpretacao')">Estudar</button>
+            </div>
+
+            <div class="card">
+                <div class="icon"></div>
+                <h3>Redação</h3>
+                <p>Aprenda a construir textos claros e bem estruturados.</p>
+                <button onclick="mostrar('redacao')">Estudar</button>
+            </div>
+
+        </div>
+
+
+        <h2 class="section-title">
+             Meu progresso
+        </h2>
+
+        <div class="progress-card">
+
+            <div class="progress-info">
+                <span>Conteúdo estudado</span>
+                <strong id="porcentagem">35%</strong>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="barra"></div>
+            </div>
+
+            <p style="margin-top:12px;color:var(--muted);">
+                Continue estudando para aumentar seu progresso!
+            </p>
+
+        </div>
+
+
+        <section class="study" id="gramatica">
+
+            <h2> Gramática</h2>
+
+            <p>
+                A gramática estuda as regras e o funcionamento da língua.
+                Ela ajuda a compreender como as palavras e frases são
+                construídas.
+            </p>
+
+            <h3>Classes gramaticais</h3>
+
+            <ul>
+                <li><strong>Substantivo:</strong> nomeia seres, objetos, lugares e sentimentos.</li>
+                <li><strong>Adjetivo:</strong> caracteriza o substantivo.</li>
+                <li><strong>Artigo:</strong> acompanha o substantivo.</li>
+                <li><strong>Pronome:</strong> substitui ou acompanha o substantivo.</li>
+                <li><strong>Verbo:</strong> indica ação, estado ou fenômeno.</li>
+                <li><strong>Advérbio:</strong> modifica principalmente o verbo.</li>
+                <li><strong>Preposição:</strong> liga palavras.</li>
+                <li><strong>Conjunção:</strong> liga orações ou termos.</li>
+                <li><strong>Interjeição:</strong> expressa emoções.</li>
+                <li><strong>Numeral:</strong> indica quantidade, ordem ou proporção.</li>
+            </ul>
+
+            <div class="example">
+                <strong>Exemplo:</strong><br>
+                "O aluno estudioso resolveu a questão rapidamente."
+                <br><br>
+                <strong>aluno</strong> = substantivo<br>
+                <strong>estudioso</strong> = adjetivo<br>
+                <strong>resolveu</strong> = verbo<br>
+                <strong>rapidamente</strong> = advérbio
+            </div>
+
+        </section>
+
+
+
+        <section class="study" id="sintaxe">
+
+            <h2> Sintaxe</h2>
+
+            <p>
+                Sintaxe é a parte da gramática que estuda a relação
+                entre as palavras dentro das frases e orações.
+            </p>
+
+            <h3>Sujeito</h3>
+
+            <p>
+                É o termo sobre o qual se declara alguma informação.
+            </p>
+
+            <div class="example">
+                <strong>Exemplo:</strong><br>
+                "Maria estudou Português."
+                <br><br>
+                Sujeito: <strong>Maria</strong><br>
+                Predicado: <strong>estudou Português</strong>
+            </div>
+
+            <h3>Tipos de sujeito</h3>
+
+            <ul>
+                <li>Sujeito simples</li>
+                <li>Sujeito composto</li>
+                <li>Sujeito oculto</li>
+                <li>Sujeito indeterminado</li>
+                <li>Oração sem sujeito</li>
+            </ul>
+
+        </section>
+
+
+
+        <section class="study" id="ortografia">
+
+            <h2> Ortografia</h2>
+
+            <p>
+                Ortografia é o conjunto de regras utilizadas para escrever
+                corretamente as palavras.
+            </p>
+
+            <h3>Por que / Porque / Por quê / Porquê</h3>
+
+            <div class="example">
+                <strong>Por que:</strong> usado geralmente em perguntas.<br>
+                "Por que você estudou?"
+                <br><br>
+
+                <strong>Porque:</strong> usado em respostas e explicações.<br>
+                "Estudei porque tenho prova."
+                <br><br>
+
+                <strong>Por quê:</strong> geralmente aparece no final da frase.<br>
+                "Você faltou por quê?"
+                <br><br>
+
+                <strong>Porquê:</strong> funciona como substantivo.<br>
+                "Não entendi o porquê da decisão."
+            </div>
+
+        </section>
+
+        <section class="study" id="acentuacao">
+
+            <h2> Acentuação</h2>
+
+            <h3>Oxítonas</h3>
+
+            <p>
+                A sílaba tônica é a última.
+            </p>
+
+            <div class="example">
+                café, sofá, cipó
+            </div>
+
+            <h3>Paroxítonas</h3>
+
+            <p>
+                A sílaba tônica é a penúltima.
+            </p>
+
+            <div class="example">
+                fácil, árvore, lápis
+            </div>
+
+            <h3>Proparoxítonas</h3>
+
+            <p>
+                A sílaba tônica é a antepenúltima.
+            </p>
+
+            <div class="tip">
+                 Regra importante: todas as palavras proparoxítonas
+                são acentuadas.
+            </div>
+
+            <div class="example">
+                médico, lâmpada, matemática
+            </div>
+
+        </section>
+
+        <section class="study" id="literatura">
+
+            <h2> Literatura</h2>
+
+            <p>
+                A literatura é uma forma de expressão artística realizada
+                principalmente por meio da linguagem.
+            </p>
+
+            <h3>Principais escolas literárias</h3>
+
+            <ul>
+                <li>Trovadorismo</li>
+                <li>Humanismo</li>
+                <li>Classicismo</li>
+                <li>Barroco</li>
+                <li>Arcadismo</li>
+                <li>Romantismo</li>
+                <li>Realismo</li>
+                <li>Naturalismo</li>
+                <li>Parnasianismo</li>
+                <li>Simbolismo</li>
+                <li>Modernismo</li>
+                <li>Literatura contemporânea</li>
+            </ul>
+
+        </section>
+
+       
+        <section class="study" id="figuras">
+
+            <h2> Figuras de linguagem</h2>
+
+            <h3>Metáfora</h3>
+
+            <p>
+                Estabelece uma comparação implícita.
+            </p>
+
+            <div class="example">
+                "Meu irmão é um leão."
+            </div>
+
+            <h3>Comparação</h3>
+
+            <p>
+                Compara elementos utilizando palavras como "como".
+            </p>
+
+            <div class="example">
+                "Ele é forte como um leão."
+            </div>
+
+            <h3>Hipérbole</h3>
+
+            <p>
+                Exagera uma ideia.
+            </p>
+
+            <div class="example">
+                "Estou morrendo de fome."
+            </div>
+
+            <h3>Personificação</h3>
+
+            <p>
+                Atribui características humanas a seres não humanos.
+            </p>
+
+            <div class="example">
+                "O vento cantava pela janela."
+            </div>
+
+            <h3>Ironia</h3>
+
+            <p>
+                Expressa uma ideia diferente daquela que as palavras
+                parecem indicar.
+            </p>
+
+        </section>
+
+    
+
+        <section class="study" id="interpretacao">
+
+            <h2> Interpretação de texto</h2>
+
+            <p>
+                Interpretar um texto significa compreender as informações
+                apresentadas e perceber as ideias que podem estar implícitas.
+            </p>
+
+            <h3>O que observar?</h3>
+
+            <ul>
+                <li>Tema principal</li>
+                <li>Ideias secundárias</li>
+                <li>Informações explícitas</li>
+                <li>Informações implícitas</li>
+                <li>Objetivo do autor</li>
+                <li>Contexto</li>
+                <li>Ironia e sentido figurado</li>
+            </ul>
+
+            <div class="tip">
+                 Dica: leia o texto inteiro antes de responder às
+                perguntas. Procure evidências no próprio texto.
+            </div>
+
+        </section>
+
+    
+
+        <section class="study" id="redacao">
+
+            <h2> Redação</h2>
+
+            <h3>1. Introdução</h3>
+
+            <p>
+                Apresente o tema e deixe clara a ideia principal
+                que será defendida.
+            </p>
+
+            <h3>2. Desenvolvimento</h3>
+
+            <p>
+                Desenvolva os argumentos, apresentando explicações,
+                exemplos e informações relevantes.
+            </p>
+
+            <h3>3. Conclusão</h3>
+
+            <p>
+                Retome a ideia principal e finalize o texto de maneira
+                coerente.
+            </p>
+
+            <div class="example">
+                <strong>Estrutura básica:</strong><br><br>
+                Introdução → Apresentação do tema<br>
+                Desenvolvimento → Argumentação<br>
+                Conclusão → Fechamento
+            </div>
+
+            <h3>Conectivos úteis</h3>
+
+            <ul>
+                <li>Além disso</li>
+                <li>Entretanto</li>
+                <li>Portanto</li>
+                <li>Consequentemente</li>
+                <li>Por outro lado</li>
+                <li>Dessa forma</li>
+                <li>Assim</li>
+                <li>Em primeiro lugar</li>
+            </ul>
+
+        </section>
+
+
+        <h2 class="section-title" id="quiz">
+             Quiz de Português
+        </h2>
+
+        <div class="quiz">
+
+            <div class="question">
+                <h3>1. Qual palavra é um verbo?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="a">
+                    bonito
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="b">
+                    estudar
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q1" value="c">
+                    escola
+                </label>
+            </div>
+
+            <div class="question">
+                <h3>2. Qual é a palavra proparoxítona?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q2" value="a">
+                    café
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q2" value="b">
+                    fácil
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q2" value="c">
+                    matemática
+                </label>
+            </div>
+
+            <div class="question">
+                <h3>3. Qual frase contém uma metáfora?</h3>
+
+                <label class="option">
+                    <input type="radio" name="q3" value="a">
+                    Ele corre como um raio.
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q3" value="b">
+                    Meu coração é uma pedra.
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="q3" value="c">
+                    João comprou um livro.
+                </label>
+            </div>
+
+            <button onclick="corrigirQuiz()">
+                Corrigir quiz
+            </button>
+
+            <div id="resultado"></div>
+
+        </div>
+
+
+        <footer>
+            <p> Português Fácil</p>
+            <p>Central de estudos de Língua Portuguesa</p>
+            <p style="margin-top:8px;">
+                Feito para estudar, revisar e aprender.
+            </p>
+        </footer>
+
+    </main>
+
+    <script>
+
+      
+
+        function alternarTema() {
+
+            document.body.classList.toggle("dark");
+
+            const botao = document.querySelector(".theme-btn");
+
+            if (document.body.classList.contains("dark")) {
+                botao.innerHTML = " Modo claro";
+            } else {
+                botao.innerHTML = " Modo escuro";
+            }
+
+        }
+
+    
+        function mostrar(id) {
+
+            const elemento = document.getElementById(id);
+
+            if (elemento) {
+                elemento.scrollIntoView({
+                    behavior: "smooth"
+                });
+            }
+
+        }
+
+      
+
+        function pesquisar() {
+
+            const texto = document
+                .getElementById("pesquisa")
+                .value
+                .toLowerCase();
+
+            const cards = document.querySelectorAll(".card");
+
+            cards.forEach(card => {
+
+                const conteudo = card.innerText.toLowerCase();
+
+                if (conteudo.includes(texto)) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+
+            });
+
+        }
+
+       
+        function corrigirQuiz() {
+
+            let pontos = 0;
+
+            const respostas = {
+                q1: "b",
+                q2: "c",
+                q3: "b"
+            };
+
+            for (let pergunta in respostas) {
+
+                const resposta = document.querySelector(
+                    `input[name="${pergunta}"]:checked`
+                );
+
+                if (resposta && resposta.value === respostas[pergunta]) {
+                    pontos++;
+                }
+
+            }
+
+            const resultado = document.getElementById("resultado");
+
+            resultado.innerHTML =
+                `Você acertou <strong>${pontos}/3</strong> questões!`;
+
+            if (pontos === 3) {
+                resultado.style.color = "#16a34a";
+                resultado.innerHTML += "<br> Excelente! Você mandou muito bem!";
+            }
+            else if (pontos === 2) {
+                resultado.style.color = "#ca8a04";
+                resultado.innerHTML += "<br> Muito bom! Continue estudando.";
+            }
+            else {
+                resultado.style.color = "#dc2626";
+                resultado.innerHTML += "<br> Continue estudando e tente novamente!";
+            }
+
+        }
+
+    
+
+        let progresso = 35;
+
+        function aumentarProgresso() {
+
+            if (progresso < 100) {
+                progresso += 5;
+            }
+
+            document.getElementById("barra").style.width =
+                progresso + "%";
+
+            document.getElementById("porcentagem").innerText =
+                progresso + "%";
+
+        }
+
+    </script>
+
+</body>
+</html>
