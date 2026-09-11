@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Português Fácil — Central de Estudos</title>
+    <title>Portugues- Educaí</title>
+    <link rel="icon" type="image/png" href="img/flavicon.png">
+
 
     <style>
         * {
@@ -51,7 +53,7 @@
             top: 0;
             width: 250px;
             height: 100vh;
-            background: linear-gradient(180deg, #259c96, #1d9e98);
+            background: linear-gradient(180deg, #2a7f76, #1d9e98);
             color: white;
             padding: 25px 15px;
             z-index: 1000;
@@ -310,7 +312,7 @@
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 18px;
         }
 
@@ -463,10 +465,50 @@
             cursor: pointer;
         }
 
+        .logo{
+            display:inline-flex;
+            align-items:center;
+            gap:10px;
+            min-width:0;
+            text-decoration:none;
+            flex-shrink:0;
+            }
+            .logo-mark{
+            width:44px;
+            height:44px;
+            display:grid;
+            place-items:center;
+            flex-shrink:0;
+            }
+            .logo-mark img{
+            display:block;
+            width:100%;
+            height:100%;
+            object-fit:contain;
+            }
+            .logo-text{
+            font-family:'Fraunces',serif;
+            font-weight:700;
+            font-size:1.45rem;
+            letter-spacing:.02em;
+            color:var(--ink);
+            color: white;
+        }
+
         #resultado {
             margin-top: 20px;
             font-size: 20px;
             font-weight: bold;
+        }
+
+        button {
+            border: none;
+            background: #45c7cc;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 15px;
         }
 
        
@@ -518,9 +560,10 @@
     <aside class="sidebar">
 
         <div class="logo">
-            <h1>
-                 Português Fácil</h1>
-            <p>Central de estudos</p>
+        <a class="logo" href="index.html" aria-label="Educaí - Início">
+            <div class="logo-mark" aria-hidden="true"><img src="img/logo/logo.png" alt=""></div>
+            <span class="logo-text">Educaí</span>
+            </a>
         </div>
 
         <ul class="menu">
@@ -536,6 +579,11 @@
             <li><a href="#interpretacao"> Interpretação</a></li>
             <li><a href="#redacao"> Redação</a></li>
             <li><a href="#quiz"> Quiz</a></li>
+
+            <button class="voltar" onclick="voltarEducai()">
+                    ← Voltar para Educaí
+            </button>
+
         </ul>
 
     </aside>
@@ -546,7 +594,6 @@
 
             <div class="welcome">
                 <h2>Olá, estudante! </h2>
-                <p>Aprenda Português de forma simples e organizada.</p>
             </div>
 
             <button class="theme-btn" onclick="alternarTema()">
@@ -563,6 +610,7 @@
             <input
                 type="text"
                 id="pesquisa"
+                placeholder="Procure o que deseja estudar"
                 onkeyup="pesquisar()"
             >
         </div>
@@ -594,32 +642,32 @@
 
             <div class="transforme-options">
                 <button class="transforme-option" onclick="transformarEstudo('ouvir')">
-                    <strong>🎧 Quero ouvir</strong>
+                    <strong> Quero ouvir</strong>
                     <span>Leia o conteúdo enviado em voz alta.</span>
                 </button>
 
                 <button class="transforme-option" onclick="transformarEstudo('libras')">
-                    <strong>🤟 Quero traduzir para Libras</strong>
+                    <strong> Quero traduzir para Libras</strong>
                     <span>Traduza somente o conteúdo enviado e abra o avatar.</span>
                 </button>
 
                 <button class="transforme-option" onclick="transformarEstudo('mapa')">
-                    <strong>🧠 Quero um mapa mental</strong>
+                    <strong> Quero um mapa mental</strong>
                     <span>Organize as principais ideias do conteúdo.</span>
                 </button>
 
                 <button class="transforme-option" onclick="transformarEstudo('simples')">
-                    <strong>📖 Quero uma explicação simples</strong>
+                    <strong> Quero uma explicação simples</strong>
                     <span>Veja uma versão mais fácil de compreender.</span>
                 </button>
 
                 <button class="transforme-option" onclick="transformarEstudo('exercicios')">
-                    <strong>📝 Quero exercícios</strong>
+                    <strong> Quero exercícios</strong>
                     <span>Crie sugestões de questões para praticar.</span>
                 </button>
 
                 <button class="transforme-option" onclick="transformarEstudo('resumo')">
-                    <strong>🎯 Quero um resumo</strong>
+                    <strong> Quero um resumo</strong>
                     <span>Veja uma síntese do conteúdo.</span>
                 </button>
             </div>
@@ -694,26 +742,7 @@
         </div>
 
 
-        <h2 class="section-title">
-             Meu progresso
-        </h2>
-
-        <div class="progress-card">
-
-            <div class="progress-info">
-                <span>Conteúdo estudado</span>
-                <strong id="porcentagem">35%</strong>
-            </div>
-
-            <div class="progress-bar">
-                <div class="progress-fill" id="barra"></div>
-            </div>
-
-            <p style="margin-top:12px;color:var(--muted);">
-                Continue estudando para aumentar seu progresso!
-            </p>
-
-        </div>
+       
 
 
         <section class="study" id="gramatica">
@@ -1098,18 +1127,17 @@
 
 
         <footer>
-            <p> Português Fácil</p>
-            <p>Central de estudos de Língua Portuguesa</p>
-            <p style="margin-top:8px;">
-                Feito para estudar, revisar e aprender.
-            </p>
-        </footer>
+  <strong>Educaí</strong> — Aprender deve ser para todos. <br>
+  <span>Desenvolvido por Maria Eduarda, Livia Alves, Isabella Teixeira, Ketilyn Santos e Apolo Moreno</span>
+</footer>
 
     </main>
 
     <script>
 
-      
+      function voltarEducai(){
+        window.location.href= 'index.html'
+      }
 
         function alternarTema() {
 

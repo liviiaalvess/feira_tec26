@@ -1,1 +1,420 @@
-#página para apresentar os recursos de acessibilidade do Educaí e como foram feitos
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acessibilidade - Educaí</title>
+
+    <link rel="stylesheet" href="css/acessibilidade.css">
+    <link rel="icon" type="image/png" href="img/flavicon.png">
+</head>
+
+<body>
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <a href="index.html">
+                <div class="logo-mark">
+                    <img src="img/logo/logo.png" alt="Logo do Educaí">
+                </div>
+
+                <span class="logo-text">Educaí</span>
+            </a>
+        </div>
+
+        <nav>
+            <ul class="menu">
+
+                <li>
+                    <a href="#inicio">Início</a>
+                </li>
+
+                <li>
+                    <a href="#recursos">Recursos</a>
+                </li>
+
+                <li>
+                    <a href="#ouvir">Leitura em voz alta</a>
+                </li>
+
+                <li>
+                    <a href="#libras">Tradução para Libras</a>
+                </li>
+
+                <li>
+                    <a href="#estudo">Ferramentas de estudo</a>
+                </li>
+
+                <li>
+                    <a href="#como">Como foi feito</a>
+                </li>
+
+                <li>
+                    <a href="index.html" class="voltar">
+                        ← Voltar para Educaí
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+
+    </aside>
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main">
+
+        <!-- INÍCIO -->
+        <section id="inicio" class="intro">
+
+            <span class="tag">ACESSIBILIDADE</span>
+
+            <h1>
+                Aprender deve ser<br>
+                <strong>para todos.</strong>
+            </h1>
+
+            <p>
+                O Educaí foi pensado para tornar o aprendizado mais
+                acessível e facilitar os estudos de diferentes formas.
+            </p>
+
+        </section>
+
+
+        <!-- RECURSOS -->
+        <section id="recursos">
+
+            <div class="section-header">
+
+                <span class="numero">01</span>
+
+                <div>
+                    <h2>Recursos de acessibilidade</h2>
+
+                    <p>
+                        Conheça as ferramentas desenvolvidas para ajudar
+                        o estudante durante seus estudos.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="cards">
+
+                <!-- MODO ESCURO -->
+                <article class="card">
+
+                    <div class="card-number">01</div>
+
+                    <h3>Modo escuro</h3>
+
+                    <p>
+                        O modo escuro altera as cores da página,
+                        deixando o fundo mais escuro e o texto mais claro.
+                        Essa opção pode deixar a visualização mais confortável
+                        para algumas pessoas.
+                    </p>
+
+                    <div class="como-funciona">
+
+                        <strong>Como funciona?</strong>
+
+                        <p>
+                            O recurso foi desenvolvido utilizando
+                            JavaScript para adicionar ou remover uma classe
+                            no elemento principal da página.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- LEITURA -->
+                <article class="card" id="ouvir">
+
+                    <div class="card-number">02</div>
+
+                    <h3>Leitura em voz alta</h3>
+
+                    <p>
+                        O estudante pode escolher a opção
+                        "Quero ouvir" para transformar o conteúdo
+                        estudado em uma forma que possa ser acompanhada
+                        por áudio.
+                    </p>
+
+                    <div class="como-funciona">
+
+                        <strong>Como funciona?</strong>
+
+                        <p>
+                            O sistema utiliza o conteúdo enviado pelo
+                            estudante e trabalha esse texto para que
+                            ele possa ser utilizado pelo recurso de voz.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- LIBRAS -->
+                <article class="card" id="libras">
+
+                    <div class="card-number">03</div>
+
+                    <h3>Tradução para Libras</h3>
+
+                    <p>
+                        O Educaí possui uma opção para traduzir o conteúdo
+                        enviado pelo estudante para Libras, buscando tornar
+                        o material mais acessível para pessoas surdas.
+                    </p>
+
+                    <div class="como-funciona">
+
+                        <strong>Como funciona?</strong>
+
+                        <p>
+                            O texto enviado é armazenado temporariamente
+                            e encaminhado para uma página específica
+                            de Libras, onde o conteúdo pode ser apresentado
+                            por meio do recurso de tradução.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- EXPLICAÇÃO SIMPLES -->
+                <article class="card">
+
+                    <div class="card-number">04</div>
+
+                    <h3>Explicação simples</h3>
+
+                    <p>
+                        O estudante pode transformar um conteúdo em uma
+                        versão mais simples de compreender, facilitando
+                        a interpretação das informações.
+                    </p>
+
+                    <div class="como-funciona">
+
+                        <strong>Como funciona?</strong>
+
+                        <p>
+                            O sistema recebe o conteúdo enviado e organiza
+                            o texto para apresentar uma versão mais direta
+                            e fácil de acompanhar.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- RESUMO -->
+                <article class="card" id="estudo">
+
+                    <div class="card-number">05</div>
+
+                    <h3>Resumo</h3>
+
+                    <p>
+                        O recurso de resumo apresenta uma síntese do
+                        conteúdo enviado, ajudando o estudante a encontrar
+                        as principais informações.
+                    </p>
+
+                    <div class="como-funciona">
+
+                        <strong>Como funciona?</strong>
+
+                        <p>
+                            O JavaScript recebe o texto e seleciona uma
+                            parte inicial do conteúdo para formar uma
+                            versão resumida.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- MAPA MENTAL -->
+                <article class="card">
+
+                    <div class="card-number">06</div>
+
+                    <h3>Mapa mental</h3>
+
+                    <p>
+                        O mapa mental organiza as principais ideias
+                        do conteúdo em tópicos, ajudando na visualização
+                        e na organização das informações.
+                    </p>
+
+                    <div class="como-funciona">
+
+                        <strong>Como funciona?</strong>
+
+                        <p>
+                            O sistema apresenta uma estrutura com tema
+                            principal, conceitos importantes, informações,
+                            exemplos e conclusões.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- EXERCÍCIOS -->
+                <article class="card">
+
+                    <div class="card-number">07</div>
+
+                    <h3>Exercícios</h3>
+
+                    <p>
+                        O estudante pode gerar sugestões de exercícios
+                        relacionados ao conteúdo que está estudando.
+                    </p>
+
+                    <div class="como-funciona">
+
+                        <strong>Como funciona?</strong>
+
+                        <p>
+                            O sistema apresenta questões para ajudar
+                            o estudante a revisar e praticar o conteúdo.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- COMO FOI DESENVOLVIDO -->
+        <section id="como" class="como-section">
+
+            <div class="section-header">
+
+                <span class="numero">02</span>
+
+                <div>
+                    <h2>Como os recursos foram desenvolvidos?</h2>
+
+                    <p>
+                        Os recursos de acessibilidade foram desenvolvidos
+                        utilizando tecnologias da web.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="tecnologias">
+
+                <div class="tecnologia">
+
+                    <span>HTML</span>
+
+                    <p>
+                        Utilizado para criar a estrutura das páginas,
+                        botões, campos de texto e conteúdos.
+                    </p>
+
+                </div>
+
+
+                <div class="tecnologia">
+
+                    <span>CSS</span>
+
+                    <p>
+                        Responsável pela aparência do site, organização
+                        dos elementos, cores, tamanhos e adaptação
+                        para diferentes telas.
+                    </p>
+
+                </div>
+
+
+                <div class="tecnologia">
+
+                    <span>JavaScript</span>
+
+                    <p>
+                        Utilizado para criar as interações e fazer
+                        os recursos funcionarem, como o modo escuro,
+                        pesquisa e transformação dos conteúdos.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACESSIBILIDADE NA PRÁTICA -->
+        <section class="destaque">
+
+            <div>
+
+                <span class="tag">NOSSO OBJETIVO</span>
+
+                <h2>
+                    Tornar o estudo<br>
+                    mais acessível.
+                </h2>
+
+            </div>
+
+            <p>
+                A acessibilidade no Educaí busca oferecer diferentes
+                maneiras de acessar e compreender um mesmo conteúdo.
+                Dessa forma, cada estudante pode utilizar os recursos
+                que melhor atendem às suas necessidades durante o aprendizado.
+            </p>
+
+        </section>
+
+
+        <!-- RODAPÉ -->
+        <footer>
+
+            <strong>Educaí</strong>
+
+            <p>
+                Aprender deve ser para todos.
+            </p>
+
+            <span>
+                Desenvolvido por Maria Eduarda, Livia Alves,
+                Isabella Teixeira, Ketilyn Santos e Apolo Moreno
+            </span>
+
+        </footer>
+
+    </main>
+
+</body>
+
+</html>
+```
