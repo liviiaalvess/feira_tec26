@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EducaAI - Libras</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f5f6fa;
+            color: #222;
+        }
+
+        header {
+            background: #45c7cc;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 15px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            color: #259c96;
+            margin-bottom: 10px;
+        }
+
+        .info {
+            color: #6b7280;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        #nomeArquivo {
+            font-weight: bold;
+            color: #45c7cc;
+            margin-bottom: 15px;
+        }
+
+        #conteudoArquivo {
+            background: #f8fafa;
+            border: 1px solid #e5e7eb;
+            border-left: 5px solid #45c7cc;
+            border-radius: 10px;
+            padding: 20px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            max-height: 500px;
+            overflow-y: auto;
+            font-size: 16px;
+        }
+
+        .botoes {
+            margin-top: 25px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            background: #45c7cc;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #259c96;
+        }
+
+        .voltar {
+            background: #6b7280;
+        }
+
+        .voltar:hover {
+            background: #4b5563;
+        }
+
+        #status {
+            margin-top: 15px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            color: #6b7280;
+        }
+
+        [vw] {
+            z-index: 9999;
+        }
+    </style>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>EducaAI - Libras</h1>
+        <p>Interpretação do conteúdo enviado para Libras</p>
+    </header>
+
+    <main>
+
+        <div class="card">
+
+            <h2>Tradução para Libras</h2>
+
+            <p class="info">
+                O conteúdo abaixo foi retirado do arquivo que você enviou
+                no EducaAI. Somente esse conteúdo será utilizado para a
+                interpretação.
+            </p>
+
+            <div id="nomeArquivo">
+                Arquivo enviado
+            </div>
+
+            <div id="conteudoArquivo">
+                Carregando conteúdo...
+            </div>
+
+            <div class="botoes">
+
+                <button id="traduzir">
+                    Traduzir para Libras
+                </button>
+
+                <button class="voltar" onclick="voltarConteúdos()">
+                    ← Voltar para os Conteúdos
+                </button>
+
+            </div>
+
+            <p id="status">
+                Preparando o VLibras...
+            </p>
+
+        </div>
+
+    </main>
+
+    <footer>
+        EducaAI — Estude do seu jeito 💙
+    </footer>
+
+    <div vw class="enabled">
+
+        <div vw-access-button class="active"></div>
+
+        <div vw-plugin-wrapper>
+
+            <div class="vw-plugin-top-wrapper"></div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const texto = sessionStorage.getItem("educai_libras_texto");
+        const nome = sessionStorage.getItem("educai_libras_nome");
+
+        const conteudoArquivo =
+            document.getElementById("conteudoArquivo");
+
+        const nomeArquivo =
+            document.getElementById("nomeArquivo");
+
+        const status =
+            document.getElementById("status");
+
+        if (nome) {
+
+            nomeArquivo.textContent =
+                "📄 Arquivo: " + nome;
+
+        }
+
+        if (texto) {
+
+            conteudoArquivo.textContent = texto;
+
+        } else {
+
+            conteudoArquivo.textContent =
+                "Nenhum conteúdo foi enviado.";
+
+            status.textContent =
+                "Não foi encontrado nenhum conteúdo para traduzir.";
+
+        }
+
+        window.addEventListener("load", function () {
+
+            new window.VLibras.Widget({
+
+                rootPath: "https://vlibras.gov.br/app",
+
+                avatar: "random",
+
+                position: "R"
+
+            });
+
+            aguardarVLibras();
+
+        });
+
+        function selecionarConteudo() {
+
+            const elemento =
+                document.getElementById("conteudoArquivo");
+
+            if (!elemento) {
+                return;
+            }
+
+            const selecao =
+                window.getSelection();
+
+            const intervalo =
+                document.createRange();
+
+            intervalo.selectNodeContents(elemento);
+
+            selecao.removeAllRanges();
+
+            selecao.addRange(intervalo);
+
+        }
+
+        function abrirWidgetAutomaticamente() {
+
+            selecionarConteudo();
+
+            if (
+                window.VLibrasWidget &&
+                window.VLibrasWidget.initBtn
+            ) {
+
+                const botao = window.VLibrasWidget.initBtn;
+
+                try {
+
+                    botao.focus();
+                    botao.click();
+
+                    status.textContent =
+                        "VLibras aberto automaticamente.";
+
+                    setTimeout(function () {
+                        selecionarConteudo();
+                    }, 1000);
+
+                    return true;
+
+                } catch (erro) {
+
+                    console.log(erro);
+
+                }
+
+            }
+
+            return false;
+
+        }
+
+        function aguardarVLibras() {
+
+            let tentativas = 0;
+
+            const intervalo = setInterval(function () {
+
+                tentativas++;
+
+                if (abrirWidgetAutomaticamente()) {
+
+                    clearInterval(intervalo);
+
+                    return;
+
+                }
+
+                if (tentativas >= 20) {
+
+                    clearInterval(intervalo);
+
+                    status.textContent =
+                        "O VLibras carregou. Clique no botão para abrir.";
+
+                }
+
+            }, 1000);
+
+        }
+
+        document
+            .getElementById("traduzir")
+            .addEventListener("click", function () {
+
+                selecionarConteudo();
+
+                if (
+                    window.VLibrasWidget &&
+                    window.VLibrasWidget.initBtn
+                ) {
+
+                    window.VLibrasWidget.initBtn.click();
+
+                    setTimeout(function () {
+                        selecionarConteudo();
+                    }, 500);
+
+                    status.textContent =
+                        "O conteúdo do arquivo está selecionado para tradução.";
+
+                } else {
+
+                    status.textContent =
+                        "O VLibras ainda está carregando.";
+
+                }
+
+            });
+
+        function voltarConteúdos() {
+
+            window.location.href = "portugues.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

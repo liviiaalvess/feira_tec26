@@ -151,34 +151,155 @@
         }
 
        
-        .hero {
-            background: linear-gradient(135deg, #1E5B54, #6BE4D6);
-            color: white;
-            padding: 35px;
-            border-radius: 20px;
-            margin-bottom: 30px;
+        .transforme {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 35px;
         }
 
-        .hero h2 {
-            font-size: 30px;
-            margin-bottom: 10px;
+        .transforme-header {
+            margin-bottom: 20px;
         }
 
-        .hero p {
-            max-width: 700px;
+        .transforme-header h2 {
+            margin-bottom: 8px;
+        }
+
+        .transforme-header p {
+            color: var(--muted);
             line-height: 1.6;
-            opacity: 0.95;
         }
 
-        .hero button {
-            margin-top: 20px;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 10px;
-            background: white;
-            color: #31a192;
-            font-weight: bold;
+        .transforme-upload {
+            border: 2px dashed var(--primary);
+            border-radius: 12px;
+            padding: 22px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .transforme-upload input {
+            margin-top: 12px;
+            max-width: 100%;
+        }
+
+        .transforme-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .transforme-option {
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            border-radius: 12px;
+            padding: 16px;
             cursor: pointer;
+            text-align: left;
+            transition: 0.2s;
+        }
+
+        .transforme-option:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+        }
+
+        .transforme-option strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .transforme-option span {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .transforme-input {
+            width: 100%;
+            min-height: 130px;
+            resize: vertical;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+            background: var(--card);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: 12px;
+        }
+
+        .transforme-input:focus {
+            border-color: var(--primary);
+        }
+
+        .transforme-result {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(69,199,204,0.08);
+            border-left: 4px solid var(--primary);
+            line-height: 1.7;
+        }
+
+        .transforme-result h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .transforme-result.show {
+            display: block;
+        }
+
+        .libras-info {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .conteudo-libras {
+            max-height: 260px;
+            overflow-y: auto;
+            margin-top: 12px;
+            padding: 14px;
+            background: rgba(69,199,204,0.06);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        .arquivo-status {
+            display: block;
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .transforme-result ul {
+            margin-left: 22px;
+        }
+
+        .transforme-clear {
+            margin-top: 12px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            padding: 9px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .transforme-options {
+                grid-template-columns: 1fr;
+            }
         }
 
         
@@ -387,9 +508,6 @@
                 gap: 15px;
             }
 
-            .hero h2 {
-                font-size: 24px;
-            }
         }
     </style>
 </head>
@@ -407,7 +525,8 @@
 
         <ul class="menu">
             <li><a href="#inicio"> Início</a></li>
-            <li><a href="#materias">Matérias</a></li>
+            <li><a href="#transformar"> Transforme meu estudo</a></li>
+            <li><a href="#materias">Conteúdos</a></li>
             <li><a href="#gramatica"> Gramática</a></li>
             <li><a href="#sintaxe"> Sintaxe</a></li>
             <li><a href="#ortografia"> Ortografia</a></li>
@@ -449,24 +568,69 @@
         </div>
 
 
-        <section class="hero">
+        <section class="transforme" id="transformar">
 
-            <h2> Sua central de estudos de Português</h2>
+            <div class="transforme-header">
+                <h2>Transforme meu estudo</h2>
+                <p>
+                    Envie um material ou cole um texto e escolha a forma que
+                    combina com você para estudar.
+                </p>
+            </div>
 
-            <p>
-                Estude gramática, literatura, ortografia, interpretação
-                de textos e redação em um único lugar.
-            </p>
+            <div class="transforme-upload">
+                <strong>📎 Envie seu material</strong>
+                <p style="margin-top:8px;color:var(--muted);">
+                    Você pode enviar um PDF, Docx ou outro arquivo para consultar.
+                </p>
+                <input type="file" id="arquivoEstudo"
+                    accept=".pdf,.txt,.docx,.pptx">
 
-            <button onclick="document.getElementById('materias').scrollIntoView()">
-                Começar a estudar
-            </button>
+                <textarea id="textoEstudo" class="transforme-input"
+                    placeholder="Ou cole aqui o conteúdo que você quer transformar..."></textarea>
+            </div>
+
+            <h3 style="margin-top:20px;">Como você quer estudar?</h3>
+
+            <div class="transforme-options">
+                <button class="transforme-option" onclick="transformarEstudo('ouvir')">
+                    <strong>🎧 Quero ouvir</strong>
+                    <span>Leia o conteúdo enviado em voz alta.</span>
+                </button>
+
+                <button class="transforme-option" onclick="transformarEstudo('libras')">
+                    <strong>🤟 Quero traduzir para Libras</strong>
+                    <span>Traduza somente o conteúdo enviado e abra o avatar.</span>
+                </button>
+
+                <button class="transforme-option" onclick="transformarEstudo('mapa')">
+                    <strong>🧠 Quero um mapa mental</strong>
+                    <span>Organize as principais ideias do conteúdo.</span>
+                </button>
+
+                <button class="transforme-option" onclick="transformarEstudo('simples')">
+                    <strong>📖 Quero uma explicação simples</strong>
+                    <span>Veja uma versão mais fácil de compreender.</span>
+                </button>
+
+                <button class="transforme-option" onclick="transformarEstudo('exercicios')">
+                    <strong>📝 Quero exercícios</strong>
+                    <span>Crie sugestões de questões para praticar.</span>
+                </button>
+
+                <button class="transforme-option" onclick="transformarEstudo('resumo')">
+                    <strong>🎯 Quero um resumo</strong>
+                    <span>Veja uma síntese do conteúdo.</span>
+                </button>
+            </div>
+
+            <div id="resultadoTransforme" class="transforme-result"></div>
 
         </section>
 
 
         <h2 class="section-title" id="materias">
-             Matérias
+             Conteúdos
         </h2>
 
         <div class="cards" id="cards">
@@ -1063,4 +1227,8 @@
     </script>
 
 </body>
+
+    <script src="traduzirlibras.js"></script>
+
+
 </html>
